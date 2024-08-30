@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Register Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1d2b64, #f5f7fa);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+        }
+
+        .register-container h2 {
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        .register-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-container label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .register-container input[type="text"],
+        .register-container input[type="email"],
+        .register-container input[type="password"] {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .register-container input[type="text"]:focus,
+        .register-container input[type="email"]:focus,
+        .register-container input[type="password"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .register-container button {
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .register-container button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .register-container .login-link {
+            margin-top: 20px;
+        }
+
+        .register-container .login-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .register-container .login-link a:hover {
+            color: #0056b3;
+        }
+
+        .flash-messages {
+            margin: 20px;
+        }
+
+        .flash {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .flash.success {
+            background-color: #28a745; /* Green */
+        }
+
+        .flash.error {
+            background-color: #dc3545; /* Red */
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Register</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('register') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            {{ form.name(class_='form-control', id='name', placeholder='Enter name') }}
+            {% if form.name.errors %}
+                <div class="error-message">
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            {{ form.email(class_='form-control', id='email', placeholder='Enter email') }}
+            {% if form.email.errors %}
+                <div class="error-message">
+                    {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            {{ form.password(class_='form-control', id='password', placeholder='Enter password') }}
+            {% if form.password.errors %}
+                <div class="error-message">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            {{ form.confirm_password(class_='form-control', id='confirm_password', placeholder='Confirm password') }}
+            {% if form.confirm_password.errors %}
+                <div class="error-message">
+                    {% for error in form.confirm_password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        {{ form.submit(class_='btn btn-primary') }}
+        <div class="login-link">
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

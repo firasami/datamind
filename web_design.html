@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #1f2833 0%, #66fcf1 100%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #1f2833 !important;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: linear-gradient(45deg, #66fcf1, #1f2833);
+        }
+
+        .navbar-collapse {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .course-title {
+            color: #66fcf1;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+
+        .course-description {
+            margin-top: 20px;
+        }
+
+        .video-embed {
+            margin-top: 20px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sidebar {
+            background-color: #1f2833;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .sidebar a {
+            color: #66fcf1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a:hover {
+            color: #c5c6c7;
+        }
+
+        .content-section {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .content-main {
+            flex: 3;
+        }
+
+        .content-sidebar {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .chapter-item {
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .footer {
+            background-color: #1f2833;
+        }
+
+        .footer h4 {
+            color: #66fcf1;
+            font-weight: bold;
+        }
+
+        .footer p, .footer a {
+            color: #c5c6c7;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-top: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg py-3 fixed-top">
+        <div class="container">
+            <a href="{{ url_for('home') }}" class="navbar-brand">Datamind</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#learn" class="nav-link">Start Learning</a>
+                    </li>
+                </ul>
+                <!-- User Links -->
+                <div class="ms-auto">
+                    {% if session['email'] %}
+                        <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" id="loginBtn" class="nav-link">Login</a>
+                        <a href="{{ url_for('register') }}" class="nav-link">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="bg-dark text-light p-5">
+        <div class="container">
+            <h1 class="course-title text-center"><br>Web Design Course</h1>
+            <p class="course-description">
+                Learn the essentials of Web Design through a series of comprehensive and interactive videos. Explore the principles of design, HTML, CSS, and how to create responsive and accessible websites.
+            </p>
+            <div class="content-section">
+                <div class="content-main">
+                    <div class="video-container" id="videoContainer">
+                        <!-- Default video or placeholder -->
+                        <iframe src="https://www.youtube.com/embed/j6Ule7GXaRs" 
+                                frameborder="0" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="content-sidebar sidebar">
+                    <h4 class="text-light"><i class="bi bi-star-fill"></i> Course Chapters</h4>
+                    <div class="chapter-item" data-video="j6Ule7GXaRs">1- Web Design Fundamentals</div>
+                    <div class="chapter-item" data-video="j6Ule7GXaRs">2- HTML and CSS Basics</div>
+                    <div class="chapter-item" data-video="j6Ule7GXaRs">3- Responsive Design</div>
+                    <div class="chapter-item" data-video="j6Ule7GXaRs">4- Color Theory in Web Design</div>
+                    <div class="chapter-item" data-video="j6Ule7GXaRs">5- Web Accessibility</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-center text-lg-start mt-auto">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">About Datamind</h4>
+                    <p>
+                        Datamind is an online platform to help people learn how to code. We offer courses on different
+                        programming languages with practical examples and projects.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h4 class="text-uppercase">Contact Us</h4>
+                    <p>Email: info@pythonic.com</p>
+                    <p>Phone: +1 234 567 890</p>
+                    <a href="#" class="btn btn-link btn-sm text-light"><i class="bi bi-arrow-up-circle"></i> Back to top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const videoContainer = document.getElementById('videoContainer');
+            const chapterItems = document.querySelectorAll('.chapter-item');
+
+            chapterItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const videoId = this.getAttribute('data-video');
+                    videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
