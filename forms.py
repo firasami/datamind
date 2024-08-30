@@ -18,7 +18,7 @@ class RegistrationForm(FlaskForm):
         validators=[
             DataRequired(),
             Regexp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,32}$"
+                "^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,32}$"
             ),
         ],
     )
@@ -37,4 +37,4 @@ class LoginForm(FlaskForm):
         ],
     )
     remember = BooleanField("Remember Me")
-    submit = SubmitField("Log In")
+    submit = SubmitField("Log In")
