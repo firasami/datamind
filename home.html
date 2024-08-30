@@ -137,6 +137,7 @@
                 <!-- User Links -->
                 <div class="ms-auto login-register-buttons">
                     {% if session['email'] %}
+                        <a href="{{ url_for('add_to_cart') }}" class="btn btn-custom"><i class="bi bi-cart3"></i></i></a>
                         <a href="{{ url_for('logout') }}" class="btn btn-custom">Logout <i class="bi bi-box-arrow-left"></i></a>
                     {% else %}
                         <a href="{{ url_for('login') }}" class="btn btn-custom">Login</a>
@@ -150,6 +151,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}
+    <br>
     <div class="alert alert-{{ category }} text-center">
         {{ message }}
     </div>
@@ -245,6 +247,7 @@
                             {% elif course.name == "Algorithm" %}
                             <a href="{{ url_for('algorithms') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
                             {% endif %}
+                            <a href="#add" class="btn btn-success mt-2">Add to Cart <i class="bi bi-cart-plus"><p class="card-text"><i class="bi bi-currency-dollar"></i>{{ course.price}}<i class="bi bi-currency-dollar"></i></p></i></a>
                         </div>
                     </div>
                 </div>
@@ -257,19 +260,6 @@
     <footer class="footer bg-dark text-center text-lg-start mt-auto">
         <div class="container p-4">
             <div class="row">
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h4 class="text-uppercase">About datamind</h4>
-                    <p>
-                        Datamind is an online platform to help people learn how to code.<br> We offer courses on different
-                        programming languages with practical examples and projects.
-                    </p>
-                </div>
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h4 class="text-uppercase">Contact Us</h4>
-                    <p>Email: info@pythonic.com</p>
-                    <p>Phone: +1 234 567 890</p>
-                    <a href="#" class="btn btn-link btn-sm text-light"><i class="bi bi-arrow-up-circle"></i> Back to top</a>
-                </div>
             </div>
         </div>
     </footer>
