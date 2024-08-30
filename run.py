@@ -49,33 +49,39 @@ courses = [
         "name": "Python",
         "icon": "python.svg",
         "description": "Python is a general-purpose programming language that’s powerful yet easy to read, making it a great first language to learn.",
+        "price" : "300",
     },
     {
         "name": "Data_Analysis",
         "icon": "analysis.png",
         "description": "Data analysis is the practice of working with data to glean useful information, which can then be used to make informed decisions.",
+        "price" : "150",
 
     },
     {
         "name": "Machine_Learning",
         "icon": "machine-learning.png",
         "description": "(ML) is the process of using mathematical models of data to help a computer learn without direct instruction. It’s considered a subset of artificial intelligence (AI)",
+        "price" : "100",
 
     },
     {
         "name": "Web_Design",
         "icon": "web.png",
         "description": "Web design is the art of planning and arranging content on a website so that it can be shared and accessed online with the world",
+        "price" : "200",
     },
     {
         "name": "Blockchain",
         "icon": "blockchain.png",
         "description": "Blockchain is a type of ledger technology that stores and records data.",
+        "price" : "350",
     },
     {
         "name": "Algorithm",
         "icon": "idea.png",
         "description": "is a set of commands that must be followed for a computer to perform calculations or other problem-solving operations.",
+        "price" : "200",
     },
 ]
 
@@ -198,6 +204,10 @@ def home():
 @app.route("/about")
 def about():
     return render_template("about.html", title="About")
+
+@app.route("/add_to_cart")
+def add_to_cart():
+    return render_template("add_to_cart.html", title="add_to_cart")
 
 
 @app.route("/course/<string:course_name>")
