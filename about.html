@@ -1,4 +1,199 @@
-{%extends "layout.html"%}
-{% block content%}
-    <h1>About Page</h1>
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Datamind</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(20, 20, 20, 0.9);
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.75rem;
+            color: #00d9ff;
+        }
+
+        .nav-link {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            margin-left: 20px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #00d9ff;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            padding: 100px 20px 60px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin: 100px 20px 0;
+        }
+
+        .about-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #00d9ff;
+        }
+
+        .about-section p.lead {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #cfcfcf;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff8c00;
+        }
+
+        .about-section p,
+        .about-section ul {
+            font-size: 1.2rem;
+            color: #cfcfcf;
+            text-align: left;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .about-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .about-section ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .about-section ul li::before {
+            content: '>';
+            color: #ff8c00;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Call to Action Styles */
+        .text-center h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00d9ff;
+        }
+
+        .btn-primary {
+            background-color: #ff8c00;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.25rem;
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff5500;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(20, 20, 20, 0.9);
+            color: #e0e0e0;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .about-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn-primary {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-nav ms-auto">
+                <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h1>About Datamind</h1>
+        <p class="lead">Welcome to Datamind, your gateway to mastering computer science. We provide a wide range of high-quality courses designed to help you advance in your career and gain the skills you need to succeed in the tech industry.</p>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Our Mission</h2>
+                <p>At Datamind, our mission is to make computer science education accessible and affordable to everyone. Whether you're a beginner looking to get started or a professional aiming to expand your knowledge, we have courses tailored to meet your needs.</p>
+            </div>
+            <div class="col-lg-6">
+                <h2>What We Offer</h2>
+                <ul>
+                    <li>Comprehensive courses covering a variety of topics, including programming, data science, artificial intelligence, and more.</li>
+                    <li>Flexible learning options that allow you to study at your own pace.</li>
+                    <li>Expert instructors with industry experience to guide you through your learning journey.</li>
+                    <li>Interactive exercises and quizzes to reinforce your understanding of key concepts.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <h3>Join Datamind Today</h3>
+            <p>Sign up now and start exploring our courses. With Datamind, you can take control of your learning and reach your goals in the world of computer science.</p>
+            <br><a href="{{ url_for('home') }}" class="btn-primary">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Datamind. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
