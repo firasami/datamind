@@ -181,18 +181,6 @@ class Course(db.Model):
         return f"Course('{self.title}')"
 
 
-def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_name = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, "static/user_pics", picture_name)
-    output_size = (150, 150)
-    i = Image.open(form_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
-    return picture_name
-
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -207,7 +195,7 @@ def about():
 
 @app.route("/add_to_cart")
 def add_to_cart():
-    return render_template("add_to_cart.html", title="add_to_cart")
+    return render_template("add_to_cart.html")
 
 
 @app.route("/course/<string:course_name>")
