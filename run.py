@@ -46,39 +46,39 @@ with app.app_context():
 
 courses = [
     {
-        "name": "Python",
+        "title": "Python",
         "icon": "python.svg",
         "description": "Python is a general-purpose programming language that’s powerful yet easy to read, making it a great first language to learn.",
         "price" : "300",
     },
     {
-        "name": "Data_Analysis",
+        "title": "Data_Analysis",
         "icon": "analysis.png",
         "description": "Data analysis is the practice of working with data to glean useful information, which can then be used to make informed decisions.",
         "price" : "150",
 
     },
     {
-        "name": "Machine_Learning",
+        "title": "Machine_Learning",
         "icon": "machine-learning.png",
         "description": "(ML) is the process of using mathematical models of data to help a computer learn without direct instruction. It’s considered a subset of artificial intelligence (AI)",
         "price" : "100",
 
     },
     {
-        "name": "Web_Design",
+        "title": "Web_Design",
         "icon": "web.png",
         "description": "Web design is the art of planning and arranging content on a website so that it can be shared and accessed online with the world",
         "price" : "200",
     },
     {
-        "name": "Blockchain",
+        "title": "Blockchain",
         "icon": "blockchain.png",
         "description": "Blockchain is a type of ledger technology that stores and records data.",
         "price" : "350",
     },
     {
-        "name": "Algorithm",
+        "title": "Algorithm",
         "icon": "idea.png",
         "description": "is a set of commands that must be followed for a computer to perform calculations or other problem-solving operations.",
         "price" : "200",
@@ -86,17 +86,22 @@ courses = [
 ]
 
 
+
+
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)  # Add this line
 
-    def init(self, name, email, password):
+    def __init__(self, name, email, password):
         self.name = name
         self.email = email
         self.password = bcrypt.generate_password_hash(password).decode('utf-8')
-    
+        self.is_admin = False  # By default, users are not admins
+
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password, password)
 
@@ -167,8 +172,24 @@ def logout():
     flash('You have been logged out.', 'info')
     return redirect(url_for('home'))
 
+@app.route('/make_admin/<string:email>')
+def make_admin(email):
+    user = User.query.filter_by(email=email).first()
+    if user:
+        user.is_admin = True
+        db.session.commit()
+        flash(f'{email} has been granted admin rights.', 'success')
+    else:
+        flash(f'User with email {email} not found.', 'danger')
+    return redirect(url_for('home'))
 
-
+class CartItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    course_id = db.Column(db.Integer, db.ForeignKey('course.id'), nullable=False)
+    course_title = db.Column(db.String(100), nullable=False)
+    course_price = db.Column(db.Float, nullable=False)
+    course_description = db.Column(db.Text, nullable=False)
 
 
 class Course(db.Model):
@@ -176,9 +197,15 @@ class Course(db.Model):
     title = db.Column(db.String(50), unique=True, nullable=False)
     description = db.Column(db.String(150), nullable=False)
     icon = db.Column(db.String(20), nullable=False, default="default_icon.jpg")
+    price = db.Column(db.Float, nullable=False) 
+
 
     def __repr__(self):
         return f"Course('{self.title}')"
+    
+@app.route('/add_to_cart')
+def add_to_cart ():
+    return render_template ("add_to_cart.html")
 
 
 @app.route("/")
@@ -193,9 +220,6 @@ def home():
 def about():
     return render_template("about.html", title="About")
 
-@app.route("/add_to_cart")
-def add_to_cart():
-    return render_template("add_to_cart.html")
 
 
 @app.route("/course/<string:course_name>")
