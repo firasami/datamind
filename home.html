@@ -232,22 +232,22 @@
                     <div class="card bg-dark text-light">
                         <div class="card-body text-center">
                             <img src="{{ url_for('static', filename=course.icon) }}" alt="Course Image" class="card-img w-25">
-                            <h4 class="card-title mb-4">{{ course.name }}</h4>
+                            <h4 class="card-title mb-4">{{ course.title }}</h4>
                             <p class="card-text">{{ course.description }}</p>
-                            {% if course.name == "Blockchain" %}
+                            {% if course.title == "Blockchain" %}
                             <a href="{{ url_for('blockchain_course') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
-                            {% elif course.name == "Python" %}
+                            {% elif course.title == "Python" %}
                             <a href="{{ url_for('python_course') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
-                            {% elif course.name == "Data_Analysis" %}
+                            {% elif course.title == "Data_Analysis" %}
                             <a href="{{ url_for('Data_Analysis') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
-                            {% elif course.name == "Machine_Learning" %}
+                            {% elif course.title == "Machine_Learning" %}
                             <a href="{{ url_for('machine_learning') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
-                            {% elif course.name == "Web_Design" %}
+                            {% elif course.title == "Web_Design" %}
                             <a href="{{ url_for('web_design') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
-                            {% elif course.name == "Algorithm" %}
+                            {% elif course.title == "Algorithm" %}
                             <a href="{{ url_for('algorithms') }}" class="btn btn-warning">Go to Course <i class="bi bi-forward-fill"></i></a>
                             {% endif %}
-                            <a href="#add" class="btn btn-success mt-2">Add to Cart <i class="bi bi-cart-plus"><p class="card-text"><i class="bi bi-currency-dollar"></i>{{ course.price}}<i class="bi bi-currency-dollar"></i></p></i></a>
+                            <a href="{{ url_for('add_to_cart') }}" class="btn btn-success mt-2">Add to Cart <i class="bi bi-cart-plus"><p class="card-text"><i class="bi bi-currency-dollar"></i>{{ course.price}}<i class="bi bi-currency-dollar"></i></p></i></a>
                         </div>
                     </div>
                 </div>
