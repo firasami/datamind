@@ -11,30 +11,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <style>
         body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
+            background-color: #000000;
+            color: #ffffff;
             font-family: 'Roboto', sans-serif;
+            margin-top: 56px; /* Adjusted for fixed navbar */
         }
 
         .navbar {
-            background: linear-gradient(90deg, #1f2833 0%, #66fcf1 100%);
+            background-color: #FFD700; /* Gold background */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .navbar-brand {
-            color: #ffffff !important;
+            color: #000000 !important; /* Black text */
             font-weight: bold;
             font-size: 1.8rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .navbar-nav .nav-link {
-            color: #ffffff !important;
+            color: #000000 !important; /* Black text */
             transition: color 0.3s, background-color 0.3s;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #1f2833 !important;
+            color: #FFD700 !important; /* Gold text on hover */
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 4px;
         }
@@ -44,7 +45,7 @@
         }
 
         .navbar-toggler-icon {
-            background-image: linear-gradient(45deg, #66fcf1, #1f2833);
+            background-image: linear-gradient(45deg, #FFD700, #000000);
         }
 
         .navbar-collapse {
@@ -52,7 +53,7 @@
         }
 
         .course-title {
-            color: #66fcf1;
+            color: #FFD700;
             font-weight: bold;
             font-size: 2rem;
             margin-top: 20px;
@@ -78,21 +79,21 @@
         }
 
         .sidebar {
-            background-color: #1f2833;
+            background-color: #000000;
             padding: 20px;
             border-radius: 8px;
             margin-top: 20px;
         }
 
         .sidebar a {
-            color: #66fcf1;
+            color: #FFD700;
             text-decoration: none;
             display: block;
             margin-bottom: 10px;
         }
 
         .sidebar a:hover {
-            color: #c5c6c7;
+            color: #ffffff;
         }
 
         .content-section {
@@ -115,16 +116,17 @@
         }
 
         .footer {
-            background-color: #1f2833;
+            background-color: #000000;
+            padding: 20px;
         }
 
         .footer h4 {
-            color: #66fcf1;
+            color: #FFD700;
             font-weight: bold;
         }
 
         .footer p, .footer a {
-            color: #c5c6c7;
+            color: #ffffff;
         }
 
         .video-container {
@@ -155,19 +157,19 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                        <a href="{{ url_for('about') }}" class="nav-link"><i class="bi bi-info-circle"></i> About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#learn" class="nav-link">Start Learning</a>
+                        <a href="#learn" class="nav-link"><i class="bi bi-book"></i> Start Learning</a>
                     </li>
                 </ul>
                 <!-- User Links -->
                 <div class="ms-auto">
                     {% if session['email'] %}
-                        <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                        <a href="{{ url_for('logout') }}" class="nav-link"><i class="bi bi-box-arrow-right"></i> Logout</a>
                     {% else %}
-                        <a href="{{ url_for('login') }}" id="loginBtn" class="nav-link">Login</a>
-                        <a href="{{ url_for('register') }}" class="nav-link">Register</a>
+                        <a href="{{ url_for('login') }}" id="loginBtn" class="nav-link"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                        <a href="{{ url_for('register') }}" class="nav-link"><i class="bi bi-person-plus"></i> Register</a>
                     {% endif %}
                 </div>
             </div>
